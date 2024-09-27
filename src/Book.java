@@ -12,6 +12,7 @@ public class Book {
     public Book(Author author, int yearOfPublication) {
         this("Нет названия", author, yearOfPublication);
     }
+
     public Book(String name, Author author) {
         this(name, author, 0);
     }
@@ -30,5 +31,25 @@ public class Book {
 
     public void setYearOfPublication(int yearOfPublication) {
         this.yearOfPublication = yearOfPublication;
+    }
+
+    @Override
+    public String toString() {
+        return "Название: " + this.name + ". Автор: " + author.toString() + ". Дата публикации: " + this.yearOfPublication;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) return true;
+        if (other == null || other.getClass() != getClass()) return false;
+        Book that = (Book) other;
+        return name.equals(that.name) &&
+                author.equals(that.author) &&
+                yearOfPublication == that.yearOfPublication;
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(name, author, yearOfPublication);
     }
 }
